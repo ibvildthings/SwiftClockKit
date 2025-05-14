@@ -1,21 +1,34 @@
 // swift-tools-version: 6.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
     name: "SwiftClockKit",
+    platforms: [
+        .iOS(.v14), // Or your desired minimum
+        .macOS(.v11)
+        // .watchOS(.v7)
+    ],
     products: [
-        // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "SwiftClockKit",
             targets: ["SwiftClockKit"]),
+        .executable(
+            name: "ClockDemoApp", // Name your demo app executable
+            targets: ["ClockDemoApp"]) // Target for the demo app
     ],
     targets: [
-        // Targets are the basic building blocks of a package, defining a module or a test suite.
-        // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SwiftClockKit"),
-
+            name: "SwiftClockKit", // Your library's code
+            dependencies: []
+            // `path` defaults to "Sources/SwiftClockKit"
+        ),
+        .executableTarget(
+            name: "ClockDemoApp", // Your demo app's code
+            dependencies: ["SwiftClockKit"] // Demo app depends on your library
+            // `path` defaults to "Sources/ClockDemoApp"
+        ),
+        .testTarget(
+            name: "SwiftClockKitTests",
+            dependencies: ["SwiftClockKit"]),
     ]
 )
