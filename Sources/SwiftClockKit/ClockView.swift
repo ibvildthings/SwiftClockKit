@@ -1,0 +1,70 @@
+import SwiftUI
+
+public struct ClockView: View {
+    @Environment(\.colorScheme) private var systemAppearance: SwiftUI.ColorScheme
+    
+    private let dateBinding: Binding<Date>?
+    private let configuredStyle: ClockStyle
+    private let configuredAppearance: AppearanceScheme
+    // private let showReflections: Bool // If you add this feature later
+    
+    @State private var internalCurrentTime = Date()
+    private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    
+    private var actualTime: Date {
+        dateBinding?.wrappedValue ?? internalCurrentTime
+    }
+    
+    public init(
+        date: Binding<Date>? = nil,
+        style: ClockStyle = .braun,
+        appearance: AppearanceScheme = .system
+        // showReflections: Bool = true // For future feature
+    ) {
+        self.dateBinding = date
+        self.configuredStyle = style
+        self.configuredAppearance = appearance
+        // self.showReflections = showReflections
+    }
+    
+    public var body: some View {
+        GeometryReader { proxy in
+            let diameter = min(proxy.size.width, proxy.size.height)
+            let radius = diameter / 2
+            
+            makeSelectedClockFace(time: actualTime, radius: radius)
+                .frame(width: diameter, height: diameter)
+                .position(x: proxy.frame(in: .local).midX, y: proxy.frame(in: .local).midY)
+                .drawingGroup()
+                .environment(\.themeStyle, configuredStyle)
+                .environment(\.clockColorScheme, configuredAppearance)
+                .environment(\.clockRadius, radius) // Ensure radius is passed
+        }
+        .aspectRatio(1, contentMode: .fit)
+        .onReceive(timer) { newTime in
+            if dateBinding == nil { // Only update internal state if not using binding
+                self.internalCurrentTime = newTime
+            }
+        }
+    }
+    
+    @ViewBuilder
+    private func makeSelectedClockFace(time: Date, radius: CGFloat) -> some View {
+        switch configuredStyle {
+        case .braun:
+            BraunClockFaceView(
+                time: time,
+                radius: radius,
+                userSchemePreference: configuredAppearance,
+                systemAppearance: systemAppearance
+            )
+        case .digital:
+            DigitalClockFaceView(
+                time: time,
+                radius: radius,
+                userSchemePreference: configuredAppearance,
+                systemAppearance: systemAppearance
+            )
+        }
+    }
+}
