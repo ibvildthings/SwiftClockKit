@@ -8,8 +8,8 @@ SwiftClockKit provides elegant, customizable clock views for SwiftUI projects—
   <img src="https://img.shields.io/badge/Swift-5.7%2B-orange.svg" alt="Swift Version">
   <img src="https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20watchOS-blue.svg" alt="Platforms">
   <img src="https://img.shields.io/badge/SPM-Compatible-brightgreen.svg" alt="Swift Package Manager">
-  <img src="https://img.shields.io/github/v/release/[YOUR_GITHUB_USERNAME]/SwiftClockKit" alt="Version">
-  <img src="https://img.shields.io/github/license/[YOUR_GITHUB_USERNAME]/SwiftClockKit" alt="License">
+  <img src="https://img.shields.io/github/v/release/ibvildthings/SwiftClockKit" alt="Version">
+  <img src="https://img.shields.io/github/license/ibvildthings/SwiftClockKit" alt="License">
 </p>
 
 ## ✨ Features
@@ -50,14 +50,14 @@ struct ContentView: View {
 Add SwiftClockKit to your project in Xcode:
 
 1. Select **File** > **Add Packages...**
-2. Enter the repository URL: `https://github.com/[YOUR_GITHUB_USERNAME]/SwiftClockKit.git`
+2. Enter the repository URL: `https://github.com/ibvildthings/SwiftClockKit.git`
 3. Choose the latest version and click **Add Package**
 
 Or add it to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/[YOUR_GITHUB_USERNAME]/SwiftClockKit.git", from: "1.0.0")
+    .package(url: "https://github.com/ibvildthings/SwiftClockKit.git", from: "1.0.0")
 ]
 ```
 
@@ -153,7 +153,7 @@ Currently available styles:
 
 ## 📋 Requirements
 
-* iOS 14.0+
+* iOS 15.0+
 * macOS 11.0+
 * watchOS 7.0+
 * Swift 5.7+ (Swift 5.9+ recommended)
@@ -173,11 +173,3 @@ I'd love to hear your thoughts and ideas! If you find a bug or want to suggest a
 ## 📄 License
 
 SwiftClockKit is available under the MIT License.
-
----
-
-**Developer Note:** Before publishing your README, make sure to:
-1. Replace `[YOUR_GITHUB_USERNAME]` with your actual GitHub username
-2. Add actual images to your repo (e.g., in a `docs/images/` folder)
-3. Create `LICENSE.md` and `CONTRIBUTING.md` files
-4. Update badge links with correct repository information
