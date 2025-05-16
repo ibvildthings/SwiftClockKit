@@ -11,7 +11,7 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("Swift Clock Kit")
-                .font(.largeTitle)
+                .font(.title3)
                 .padding(.top)
 
             ClockView(
@@ -21,6 +21,7 @@ struct ContentView: View {
             )
             .frame(width: 250, height: 250)
             .padding()
+            .shadow(radius: 9, x: CGFloat(5), y: CGFloat(5))
 
             Form {
                 Section(header: Text("Appearance")) {
