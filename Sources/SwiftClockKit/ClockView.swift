@@ -16,8 +16,8 @@ public struct ClockView: View {
     }
     
     public init(
-        date: Binding<Date>? = nil,
         style: ClockStyle = .braun,
+        date: Binding<Date>? = nil,
         appearance: AppearanceScheme = .system
         // showReflections: Bool = true // For future feature
     ) {
@@ -38,7 +38,7 @@ public struct ClockView: View {
                 .drawingGroup()
                 .environment(\.themeStyle, configuredStyle)
                 .environment(\.clockColorScheme, configuredAppearance)
-                .environment(\.clockRadius, radius) // Ensure radius is passed
+                .environment(\.clockRadius, radius)
         }
         .aspectRatio(1, contentMode: .fit)
         .onReceive(timer) { newTime in

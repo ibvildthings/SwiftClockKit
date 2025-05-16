@@ -8,8 +8,6 @@ SwiftClockKit provides elegant, customizable clock views for SwiftUI projects—
   <img src="https://img.shields.io/badge/Swift-5.7%2B-orange.svg" alt="Swift Version">
   <img src="https://img.shields.io/badge/Platforms-iOS%20%7C%20macOS%20%7C%20watchOS-blue.svg" alt="Platforms">
   <img src="https://img.shields.io/badge/SPM-Compatible-brightgreen.svg" alt="Swift Package Manager">
-  <img src="https://img.shields.io/github/v/release/ibvildthings/SwiftClockKit" alt="Version">
-  <img src="https://img.shields.io/github/license/ibvildthings/SwiftClockKit" alt="License">
 </p>
 
 ## ✨ Features
@@ -130,8 +128,8 @@ struct LondonClockView: View {
 
 ```swift
 ClockView(
-    date: Binding<Date>? = nil,       // Optional starting time (defaults to current system time)
     style: ClockStyle = .braun,   // Visual style of the clock
+    date: Binding<Date>? = nil,       // Optional starting time (defaults to current system time)
     appearance: AppearanceScheme = .system,  // Light, dark, or system-based
     showReflections: Bool = true      // Toggle reflection effects
 )
