@@ -1,19 +1,11 @@
-//
-//  ContentView.swift
-//  SwiftClockKitDemo
-//
-//  Created by Pritesh Desai on 5/15/25.
-//
-
 import SwiftUI
 import SwiftClockKit
 
 struct ContentView: View {
     @State private var currentAppearance: AppearanceScheme = .system
     @State private var useCustomDate: Bool = false
-    @State private var selectedDate: Date = Date() // Default to now
+    @State private var selectedDate: Date = Date()
 
-    // For the code snippet
     @State private var codeSnippet: String = ""
 
     var body: some View {
@@ -22,19 +14,18 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .padding(.top)
 
-            // The ClockView itself
             ClockView(
-                date: useCustomDate ? $selectedDate : nil, // Use selectedDate or live time
-                style: .braun,
+                style: .braun, // Currently showcasing Braun style
+                date: useCustomDate ? $selectedDate : nil,
                 appearance: currentAppearance
             )
-            .frame(width: 250, height: 250) // Or some other appropriate size
+            .frame(width: 250, height: 250)
             .padding()
-            .background(Color(uiColor: .systemGray5)) // A subtle background for the clock
+            .background(.thinMaterial)
             .cornerRadius(12)
+            .shadow(radius: 5)
 
             Form {
-                // Appearance Picker
                 Section(header: Text("Appearance")) {
                     Picker("Scheme", selection: $currentAppearance) {
                         ForEach(AppearanceScheme.allCases) { scheme in
@@ -44,50 +35,46 @@ struct ContentView: View {
                     .pickerStyle(.segmented)
                 }
 
-                // Custom Date Controls
                 Section(header: Text("Time Control")) {
                     Toggle("Use Custom Date", isOn: $useCustomDate.animation())
                     if useCustomDate {
-                        DatePicker("Clock Time", selection: $selectedDate)
-                            .datePickerStyle(.compact) // Or .graphical
+                        DatePicker("Clock Time", selection: $selectedDate, displayedComponents: [.hourAndMinute, .date])
+                            .datePickerStyle(.compact)
                     }
                 }
                 
-                // Dynamically Generated Code Snippet
                 Section(header: Text("Code Example")) {
                     Text(codeSnippet)
                         .font(.system(.caption, design: .monospaced))
-                        .padding(8)
-                        .background(Color(uiColor: .systemGray6))
+                        .padding(10)
+                        .background(Color.gray.opacity(0.1)) // Subtle background for code
                         .cornerRadius(8)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .onAppear(perform: updateCodeSnippet) // Initial update
-                        .onChange(of: currentAppearance, perform: { _ in updateCodeSnippet() })
-                        .onChange(of: useCustomDate, perform: { _ in updateCodeSnippet() })
-                        // Note: For $selectedDate, direct use in snippet might be tricky
-                        // without formatting, or you might just indicate its use.
+                        .lineLimit(nil) // Allow multiple lines for snippet
                 }
             }
-            
-            Spacer()
         }
         .padding()
-        .onAppear(perform: updateCodeSnippet) // For initial load
+        .onAppear(perform: updateCodeSnippet)
+        .onChange(of: currentAppearance) { _ in updateCodeSnippet() }
+        .onChange(of: useCustomDate) { _ in updateCodeSnippet() }
+        .onChange(of: selectedDate) { _ in if useCustomDate { updateCodeSnippet() } } // Update snippet if custom date changes
     }
 
     func updateCodeSnippet() {
-        var dateString = "nil"
+        var dateParamString = "nil"
         if useCustomDate {
-            // For simplicity, just indicate a binding is used.
-            // Actual date value in snippet is less critical than showing the parameter.
-            dateString = "$yourCustomDate"
+            dateParamString = "$yourCustomDateBinding"
         }
 
+        let appearanceParamString = ".\(currentAppearance.rawValue.lowercased())"
+        
+        // Assuming .braun style for this snippet example
         codeSnippet = """
         ClockView(
             style: .braun,
-            date: \(dateString),
-            appearance: .\(currentAppearance.rawValue.lowercased())
+            date: \(dateParamString),
+            appearance: \(appearanceParamString)
         )
         """
     }

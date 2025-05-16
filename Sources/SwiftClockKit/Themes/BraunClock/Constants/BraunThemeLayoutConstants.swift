@@ -1,12 +1,5 @@
-//
-//  BraunThemeLayoutConstants.swift
-//  Clock
-//
-//
-
 import SwiftUI
 
-// MARK: - Style Configuration Constants
 struct BraunThemeLayoutConstants {
     static let borderWidthRatio: CGFloat = 0.1
     static let shadowDistanceRatio: CGFloat = 0.02
@@ -14,7 +7,7 @@ struct BraunThemeLayoutConstants {
     static let faceShadowRadiusRatio: CGFloat = 0.03
     static let brandTextSizeRatio: CGFloat = 0.1
     static let brandTextOffsetRatio: CGFloat = -0.6
-    static let shadowAngle: CGFloat = .pi * 2.25
+    static let shadowAngle: CGFloat = .pi * 2.25 // Consistent angle for shadows
     
     struct Reflection {
         static let sizeMultiplier: CGFloat = 1.6
@@ -42,7 +35,7 @@ struct BraunThemeLayoutConstants {
         static let numberOffsetRatio: CGFloat = -0.88
         static let minWidth: CGFloat = 0.8
         static let minHourWidth: CGFloat = 1.5
-        static let showHourMarkers: Bool = false
+        static let showHourMarkers: Bool = false // Toggle for showing hour markers vs numbers
     }
     
     struct HourHand {

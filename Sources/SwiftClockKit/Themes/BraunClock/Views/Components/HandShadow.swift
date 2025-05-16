@@ -1,17 +1,9 @@
-//
-//  HandShadow.swift
-//  Clock
-//
-//
-
 import SwiftUI
 
-
-// MARK: - View Modifier for Hand Shadow
 struct HandShadow: ViewModifier {
     let radius: CGFloat
     let distance: CGFloat
-    let angle: CGFloat
+    let angle: CGFloat // Angle in radians
     let color: Color
     
     func body(content: Content) -> some View {
@@ -28,4 +20,3 @@ extension View {
         self.modifier(HandShadow(radius: radius, distance: distance, angle: angle, color: color))
     }
 }
-

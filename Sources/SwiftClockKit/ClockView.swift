@@ -3,10 +3,9 @@ import SwiftUI
 public struct ClockView: View {
     @Environment(\.colorScheme) private var systemAppearance: SwiftUI.ColorScheme
     
-    private let dateBinding: Binding<Date>?
     private let configuredStyle: ClockStyle
+    private let dateBinding: Binding<Date>?
     private let configuredAppearance: AppearanceScheme
-    // private let showReflections: Bool // If you add this feature later
     
     @State private var internalCurrentTime = Date()
     private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -19,12 +18,10 @@ public struct ClockView: View {
         style: ClockStyle = .braun,
         date: Binding<Date>? = nil,
         appearance: AppearanceScheme = .system
-        // showReflections: Bool = true // For future feature
     ) {
-        self.dateBinding = date
         self.configuredStyle = style
+        self.dateBinding = date
         self.configuredAppearance = appearance
-        // self.showReflections = showReflections
     }
     
     public var body: some View {

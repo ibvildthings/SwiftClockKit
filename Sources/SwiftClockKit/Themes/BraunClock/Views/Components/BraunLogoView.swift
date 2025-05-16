@@ -1,17 +1,11 @@
-//
-//  BraunLogoView.swift
-//  Clock
-//
-//
-
 import SwiftUI
 
 struct BraunLogoView: View {
     let baseFontSize: CGFloat
     let theme: BraunClockTheme
     
-    private var aFontSize: CGFloat { baseFontSize * 1.18 }
-    private let fontName = "HelveticaNeue-CondensedBold"
+    private var aFontSize: CGFloat { baseFontSize * 1.18 } // 'A' is typically larger in BRAUN logo
+    private let fontName = "HelveticaNeue-CondensedBold" // Standard font for BRAUN aesthetic
     
     init(baseFontSize: CGFloat = 60, theme: BraunClockTheme) {
         self.baseFontSize = baseFontSize
@@ -45,6 +39,6 @@ struct BraunLogoView: View {
     var body: some View {
         Text(logoText)
             .lineLimit(1)
-            .fixedSize(horizontal: true, vertical: true)
+            .fixedSize(horizontal: true, vertical: true) // Ensures text is not truncated
     }
 }

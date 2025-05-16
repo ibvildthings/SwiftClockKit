@@ -1,9 +1,3 @@
-//
-//  ClockColorScheme.swift
-//  Clock
-//
-//
-
 import Swift
 
 // MARK: - Color Scheme Enum

@@ -1,11 +1,4 @@
-//
-//  HourHand.swift
-//  Clock
-//
-//
-
 import SwiftUI
-
 
 struct HourHand: View {
     @Environment(\.clockRadius) private var radius: CGFloat
@@ -27,4 +20,3 @@ struct HourHand: View {
         )
     }
 }
-

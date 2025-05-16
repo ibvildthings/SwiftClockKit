@@ -1,9 +1,3 @@
-//
-//  EnvironmentValues.swift
-//  Clock
-//
-//
-
 import SwiftUI
 
 public extension EnvironmentValues {

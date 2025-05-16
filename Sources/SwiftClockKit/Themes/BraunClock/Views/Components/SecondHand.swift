@@ -1,9 +1,3 @@
-//
-//  SecondHand.swift
-//  Clock
-//
-//
-
 import SwiftUI
 
 struct SecondHand: View {
@@ -21,31 +15,39 @@ struct SecondHand: View {
     private var centerCircleDiameter: CGFloat { radius * BraunThemeLayoutConstants.SecondHand.centerCircleDiameterRatio }
     private var innerStrokeDiameter: CGFloat { radius * BraunThemeLayoutConstants.SecondHand.innerStrokeDiameterRatio }
     private var innerStrokeWidth: CGFloat { max(BraunThemeLayoutConstants.SecondHand.minInnerStrokeWidth, radius * BraunThemeLayoutConstants.SecondHand.innerStrokeWidthRatio) }
-    private var centerShadowRadius: CGFloat { radius * BraunThemeLayoutConstants.SecondHand.centerShadowRadiusRatio }
+    private var centerShadowRadiusAmount: CGFloat { radius * BraunThemeLayoutConstants.SecondHand.centerShadowRadiusRatio }
     private var centerPinSizeDiameter: CGFloat { radius * BraunThemeLayoutConstants.SecondHand.centerPinSizeRatio }
     
     var body: some View {
         ZStack {
+            // Stem of the second hand
             Capsule()
                 .fill(theme.secondHand)
                 .frame(width: stemWidth, height: stemHeight)
                 .offset(y: stemOffset)
+            
+            // Counterweight of the second hand
             Capsule()
                 .fill(theme.secondHand)
                 .frame(width: counterWeightWidth, height: counterWeightHeight)
                 .offset(y: counterWeightOffset)
+            
+            // Central circle part
             Circle()
                 .fill(theme.secondHand)
                 .frame(width: centerCircleDiameter, height: centerCircleDiameter)
+            
+            // Accent stroke around the center
             Circle()
                 .stroke(theme.secondHandAccent, lineWidth: innerStrokeWidth)
                 .frame(width: innerStrokeDiameter, height: innerStrokeDiameter)
-                .shadow(color: theme.shadow.opacity(0.2), radius: centerShadowRadius)
+                .shadow(color: theme.shadow.opacity(0.2), radius: centerShadowRadiusAmount)
+            
+            // Central pin detail
             Circle()
                 .fill(theme.secondHandPin)
                 .frame(width: centerPinSizeDiameter, height: centerPinSizeDiameter)
         }
-        .drawingGroup()
+        .drawingGroup() // Optimizes rendering for complex shapes
     }
 }
-

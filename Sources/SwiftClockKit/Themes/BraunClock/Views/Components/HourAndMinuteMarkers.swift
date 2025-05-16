@@ -1,9 +1,3 @@
-//
-//  HourAndMinuteMarkers.swift
-//  Clock
-//
-//
-
 import SwiftUI
 
 struct HourAndMinuteMarkers: View {
@@ -14,39 +8,42 @@ struct HourAndMinuteMarkers: View {
     private var minuteMarkerHeight: CGFloat { radius * BraunThemeLayoutConstants.Markers.minuteHeightRatio }
     private var hourMarkerWidth: CGFloat { max(BraunThemeLayoutConstants.Markers.minHourWidth, radius * BraunThemeLayoutConstants.Markers.hourWidthRatio) }
     private var hourMarkerHeight: CGFloat { radius * BraunThemeLayoutConstants.Markers.hourHeightRatio }
-    private var markerOffset: CGFloat { radius * BraunThemeLayoutConstants.Markers.offsetRatio }
+    private var markerVisualOffset: CGFloat { radius * BraunThemeLayoutConstants.Markers.offsetRatio } // How far from center markers are placed
     private var numberFontSize: CGFloat { radius * BraunThemeLayoutConstants.Markers.numberSizeRatio }
-    private var numberOffset: CGFloat { radius * BraunThemeLayoutConstants.Markers.numberOffsetRatio }
+    private var numberVisualOffset: CGFloat { radius * BraunThemeLayoutConstants.Markers.numberOffsetRatio } // How far from center numbers are placed
     
     var body: some View {
         ZStack {
-            ForEach(0..<60) { minute in
-                if minute % 5 != 0 {
+            // Minute Markers (non-hour)
+            ForEach(0..<60) { minuteTick in
+                if minuteTick % 5 != 0 { // Don't draw on hour marks if hour markers/numbers are present
                     Rectangle()
                         .fill(theme.marker)
                         .frame(width: minuteMarkerWidth, height: minuteMarkerHeight)
-                        .offset(y: markerOffset)
-                        .rotationEffect(.degrees(Double(minute) * 6))
+                        .offset(y: markerVisualOffset)
+                        .rotationEffect(.degrees(Double(minuteTick) * 6)) // 6 degrees per minute
                 }
             }
             
-            ForEach(1..<13) { hour in
+            // Hour Markers or Numbers
+            ForEach(1..<13) { hourTick in
                 ZStack {
                     if BraunThemeLayoutConstants.Markers.showHourMarkers {
                         Rectangle()
                             .fill(theme.hourMarker)
                             .frame(width: hourMarkerWidth, height: hourMarkerHeight)
-                            .offset(y: markerOffset)
+                            .offset(y: markerVisualOffset)
                     }
-                    Text("\(hour)")
+                    // Hour Numbers
+                    Text("\(hourTick)")
                         .font(.system(size: numberFontSize, weight: .regular))
-                        .foregroundColor(theme.brandText) // Use themed brand text color
-                        .monospacedDigit()
-                        .rotationEffect(.degrees(Double(hour) * -30))
-                        .offset(y: numberOffset)
+                        .foregroundColor(theme.brandText)
+                        .monospacedDigit() // Ensures consistent spacing for numbers
+                        .rotationEffect(.degrees(Double(hourTick) * -30)) // Counter-rotate to keep numbers upright
+                        .offset(y: numberVisualOffset) // Position numbers appropriately
                         .frame(alignment: .center)
                 }
-                .rotationEffect(.degrees(Double(hour) * 30))
+                .rotationEffect(.degrees(Double(hourTick) * 30)) // 30 degrees per hour
             }
         }
     }
