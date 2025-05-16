@@ -10,7 +10,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 20) {
-            Text("Clock Showcase")
+            Text("Swift Clock Kit")
                 .font(.largeTitle)
                 .padding(.top)
 

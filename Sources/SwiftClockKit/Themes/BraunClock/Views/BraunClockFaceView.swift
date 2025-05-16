@@ -30,6 +30,8 @@ struct BraunClockFaceView: View {
         
         return ZStack {
             Frame(theme: theme)
+//            ConcaveReflection(theme: theme)
+//            ConvexMoonReflection(theme: theme)
             HourAndMinuteMarkers(theme: theme)
             BraunLogoView(baseFontSize: self.radius * BraunThemeLayoutConstants.brandTextSizeRatio, theme: theme)
                 .offset(y: self.radius * BraunThemeLayoutConstants.brandTextOffsetRatio)
@@ -44,7 +46,7 @@ struct BraunClockFaceView: View {
             
             SecondHand(theme: theme)
                 .rotationEffect(viewModel.secondAngle)
-                .animation(nil, value: viewModel.secondAngle) // Ensures second hand "ticks" or moves smoothly based on update frequency
+                .animation(nil, value: viewModel.secondAngle)
                 .handShadow(radius: shadowRadius, distance: shadowDistance, angle: shadowAngle, color: theme.shadow)
         }
         .clipShape(Circle())

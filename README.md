@@ -40,6 +40,17 @@ struct ContentView: View {
     }
 }
 ```
+## 🚀 Running the Demo Application
+
+To see `SwiftClockKit` in action and experiment with its features, you can run the included demo application. The demo showcases the `ClockView` and allows you to interactively change its appearance and time settings.
+
+**Steps to run the demo:**
+
+1.  In your local copy of the repository, navigate to the folder `SwiftClockKitDemo`. It contains the demo application.
+2.  Inside this folder, locate and open the Xcode project file (e.g., `SwiftClockKitDemo.xcodeproj`) in Xcode.
+3.  Click the "Run" button (or press Command+R).
+
+![SwiftClockKit Demo App Screenshot](./Screenshots/demo_app_screenshot.png)
 
 ## 📦 Installation
 
