@@ -4,7 +4,8 @@
 
 **Beautifully Designed, Code-Rendered Clock Faces for Your SwiftUI Apps**
 
-SwiftClockKit provides elegant, customizable clock views for SwiftUI projects—**drawn entirely with code, no images!** Each clock face features meticulously designed details with realistic skeuomorphic effects, all achieved purely through SwiftUI.
+SwiftClockKit provides elegant, customizable clock views for SwiftUI projects—**drawn entirely with code, no images!** 
+Each clock face features meticulously designed details with realistic skeuomorphic effects, all achieved purely through SwiftUI.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Swift-5.7%2B-orange.svg" alt="Swift Version">
@@ -14,18 +15,22 @@ SwiftClockKit provides elegant, customizable clock views for SwiftUI projects—
 
 ## ✨ Features
 
-* 🌟 **Beautifully Designed Styles:** Each clock style is crafted with attention to detail. All effects—shadows, highlights, and textures—are rendered in real-time using only SwiftUI.
+* 🌟 **Beautifully Designed Styles:** 
+Each clock style is crafted with attention to detail. All effects—shadows, highlights, and textures—are rendered in real-time using only SwiftUI.
 
 * 🎨 **Simple Customization:**
   * Multiple design styles (starting with `.braun`)
   * Works seamlessly with system themes (light/dark)
   * Toggle visual details like reflections
 
-* ⏱️ **Flexible Time Display:** Show the current system time or initialize with any specific time (great for different timezones or events)
+* ⏱️ **Flexible Time Display:** 
+Show the current system time or initialize with any specific time (great for different timezones or events)
 
-* 📱 **Cross-Platform:** Works on iOS, macOS, and watchOS
+* 📱 **Cross-Platform:** 
+Works on iOS, macOS, and watchOS
 
-* 💻 **Pure SwiftUI:** No images or external dependencies—just clean SwiftUI code
+* 💻 **Pure SwiftUI:** 
+No images or external dependencies—just clean SwiftUI code
 
 ## 🚀 Quick Start
 
@@ -75,6 +80,7 @@ dependencies: [
 ## 🖼️ Examples
 
 ### Default Clock with System Appearance
+![Default Clock Example](./Screenshots/braun-light.gif)
 
 The simplest implementation shows the current time and automatically adapts to light/dark mode:
 
@@ -83,9 +89,9 @@ ClockView() // Defaults to .braun style, .system appearance, with reflections
     .frame(width: 250, height: 250)
 ```
 
-![Default Clock Example](./Screenshots/braun-light.gif)
 
 ### Light & Dark Mode Examples
+![Default Clock Example](./Screenshots/braun-dark.gif)
 
 Explicitly set the appearance for your clock:
 
@@ -100,8 +106,6 @@ HStack(spacing: 20) {
         .cornerRadius(10)
 }
 ```
-
-![Default Clock Example](./Screenshots/braun-dark.gif)
 
 ### Showing a Different Timezone
 
@@ -130,8 +134,6 @@ struct LondonClockView: View {
     }
 }
 ```
-
-![London Time Example](docs/images/london-time.png)
 
 ## ⚙️ Customization Options
 
