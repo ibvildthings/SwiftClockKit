@@ -1,5 +1,7 @@
 # SwiftClockKit 🕰️✨
 
+![Default Clock Example](./Screenshots/braun-light.gif)
+
 **Beautifully Designed, Code-Rendered Clock Faces for Your SwiftUI Apps**
 
 SwiftClockKit provides elegant, customizable clock views for SwiftUI projects—**drawn entirely with code, no images!** Each clock face features meticulously designed details with realistic skeuomorphic effects, all achieved purely through SwiftUI.
@@ -81,7 +83,7 @@ ClockView() // Defaults to .braun style, .system appearance, with reflections
     .frame(width: 250, height: 250)
 ```
 
-![Default Clock Example](docs/images/default-clock.gif)
+![Default Clock Example](./Screenshots/braun-light.gif)
 
 ### Light & Dark Mode Examples
 
@@ -99,7 +101,7 @@ HStack(spacing: 20) {
 }
 ```
 
-![Light and Dark Mode Clocks](docs/images/light-dark-clocks.png)
+![Default Clock Example](./Screenshots/braun-dark.gif)
 
 ### Showing a Different Timezone
 
