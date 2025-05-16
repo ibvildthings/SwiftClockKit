@@ -21,9 +21,6 @@ struct ContentView: View {
             )
             .frame(width: 250, height: 250)
             .padding()
-            .background(.thinMaterial)
-            .cornerRadius(12)
-            .shadow(radius: 5)
 
             Form {
                 Section(header: Text("Appearance")) {
