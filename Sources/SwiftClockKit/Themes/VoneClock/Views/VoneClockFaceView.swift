@@ -36,8 +36,7 @@ struct VoneClockFaceView: View {
 
         ZStack {
             // 1. Clock Face Base
-            Circle()
-                .fill(theme.face)
+            VoneFace(theme: theme)
 
             // 2. "vone." brand text
             Text(VoneThemeLayoutConstants.BrandText.text)

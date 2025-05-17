@@ -15,7 +15,7 @@ struct ContentView: View {
                 .padding(.top)
 
             ClockView(
-                style: .braun, // Currently showcasing Braun style
+                style: .vone, // Currently showcasing Braun style
                 date: useCustomDate ? $selectedDate : nil,
                 appearance: currentAppearance
             )

@@ -18,7 +18,17 @@ struct VoneHourHand: View {
     
     var body: some View {
         RoundedRectangle(cornerRadius: cornerRadius)
-            .fill(theme.hourHand)
+            .fill(
+                LinearGradient(
+                    gradient: Gradient(colors: [
+                        theme.hourHandLight,
+                        theme.hourHand,
+                        theme.hourHandDark
+                    ]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            )
             .frame(width: width, height: drawnCapsuleLength)
             .offset(y: yOffset)
             .drawingGroup()
