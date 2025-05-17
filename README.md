@@ -156,7 +156,7 @@ Currently available styles:
 
 * `.braun` – Clean, elegant design inspired by classic Braun aesthetic
 
-![Vone Clock Example](./Screenshots/vone-dark.png)
+<img src="./Screenshots/vone-dark.png" alt="Vone Clock Preview" style="max-width:300px; height:auto;">
 
 * `.vone` – Modern, minimalist design by vone
 
