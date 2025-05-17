@@ -5,6 +5,7 @@ struct ContentView: View {
     @State private var currentAppearance: AppearanceScheme = .system
     @State private var useCustomDate: Bool = false
     @State private var selectedDate: Date = Date()
+    @State private var selectedClockStyle: ClockStyle = .braun // Default to Braun
 
     @State private var codeSnippet: String = ""
 
@@ -15,7 +16,7 @@ struct ContentView: View {
                 .padding(.top)
 
             ClockView(
-                style: .vone, // Currently showcasing Braun style
+                style: selectedClockStyle, // Use the state variable here
                 date: useCustomDate ? $selectedDate : nil,
                 appearance: currentAppearance
             )
@@ -24,6 +25,15 @@ struct ContentView: View {
             .shadow(radius: 9, x: CGFloat(5), y: CGFloat(5))
 
             Form {
+                Section(header: Text("Clock Style")) {
+                    Picker("Style", selection: $selectedClockStyle) {
+                        ForEach(ClockStyle.allCases) { style in
+                            Text(style.rawValue).tag(style)
+                        }
+                    }
+                    .pickerStyle(.menu) // Changed to .menu for a dropdown/selector style
+                }
+
                 Section(header: Text("Appearance")) {
                     Picker("Scheme", selection: $currentAppearance) {
                         ForEach(AppearanceScheme.allCases) { scheme in
@@ -45,18 +55,20 @@ struct ContentView: View {
                     Text(codeSnippet)
                         .font(.system(.caption, design: .monospaced))
                         .padding(10)
-                        .background(Color.gray.opacity(0.1)) // Subtle background for code
+                        .background(Color.gray.opacity(0.1))
                         .cornerRadius(8)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .lineLimit(nil) // Allow multiple lines for snippet
+                        .lineLimit(nil)
                 }
             }
+            .cornerRadius(15)
         }
         .padding()
         .onAppear(perform: updateCodeSnippet)
+        .onChange(of: selectedClockStyle) { updateCodeSnippet() }
         .onChange(of: currentAppearance) { updateCodeSnippet() }
         .onChange(of: useCustomDate) { updateCodeSnippet() }
-        .onChange(of: selectedDate) { _ in if useCustomDate { updateCodeSnippet() } } // Update snippet if custom date changes
+        .onChange(of: selectedDate) { _ in if useCustomDate { updateCodeSnippet() } }
     }
 
     func updateCodeSnippet() {
@@ -66,11 +78,11 @@ struct ContentView: View {
         }
 
         let appearanceParamString = ".\(currentAppearance.rawValue.lowercased())"
+        let styleParamString = ".\(selectedClockStyle.rawValue.lowercased())"
         
-        // Assuming .braun style for this snippet example
         codeSnippet = """
         ClockView(
-            style: .braun,
+            style: \(styleParamString),
             date: \(dateParamString),
             appearance: \(appearanceParamString)
         )
