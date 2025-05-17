@@ -28,6 +28,11 @@ struct VoneClockFaceView: View {
         
         let brandTextSize = radius * VoneThemeLayoutConstants.BrandText.sizeRatio
         let brandTextYOffset = radius * VoneThemeLayoutConstants.BrandText.yOffsetRatio
+        
+        let shadowDistance = self.radius * VoneThemeLayoutConstants.shadowDistanceRatio
+        let shadowRadius = self.radius * VoneThemeLayoutConstants.shadowRadiusRatio
+        let shadowAngle = VoneThemeLayoutConstants.shadowAngle
+        
 
         ZStack {
             // 1. Clock Face Base
@@ -43,10 +48,12 @@ struct VoneClockFaceView: View {
             // 3. Hour Hand
             VoneHourHand(theme: theme)
                 .rotationEffect(viewModel.hourAngle)
+                .handShadow(radius: shadowRadius, distance: shadowDistance, angle: shadowAngle, color: theme.shadow)
 
             // 4. Minute Hand
             VoneMinuteHand(theme: theme)
                 .rotationEffect(viewModel.minuteAngle)
+                .handShadow(radius: shadowRadius, distance: shadowDistance, angle: shadowAngle, color: theme.shadow)
 
             // 5. Center Piece Hub (should be on top of hand bases)
             Circle()

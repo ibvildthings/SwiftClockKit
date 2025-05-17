@@ -4,6 +4,10 @@ struct VoneThemeLayoutConstants {
     
     static let widthRatio: CGFloat = 0.26
     
+    static let shadowDistanceRatio: CGFloat = 0.02
+    static let shadowRadiusRatio: CGFloat = 0.02
+    static let shadowAngle: CGFloat = .pi * 2.25
+    
     struct Face {
         // No specific constants
     }

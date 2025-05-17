@@ -4,10 +4,10 @@ struct BraunThemeLayoutConstants {
     static let borderWidthRatio: CGFloat = 0.1
     static let shadowDistanceRatio: CGFloat = 0.02
     static let shadowRadiusRatio: CGFloat = 0.02
+    static let shadowAngle: CGFloat = .pi * 2.25
     static let faceShadowRadiusRatio: CGFloat = 0.03
     static let brandTextSizeRatio: CGFloat = 0.1
     static let brandTextOffsetRatio: CGFloat = -0.6
-    static let shadowAngle: CGFloat = .pi * 2.25 // Consistent angle for shadows
     
     struct Reflection {
         static let sizeMultiplier: CGFloat = 1.6
@@ -30,9 +30,9 @@ struct BraunThemeLayoutConstants {
         static let minuteHeightRatio: CGFloat = 0.06
         static let hourWidthRatio: CGFloat = 0.01
         static let hourHeightRatio: CGFloat = 0.08
-        static let offsetRatio: CGFloat = -0.9
+        static let offsetRatio: CGFloat = -0.88
         static let numberSizeRatio: CGFloat = 0.1
-        static let numberOffsetRatio: CGFloat = -0.88
+        static let numberOffsetRatio: CGFloat = -0.86
         static let minWidth: CGFloat = 0.8
         static let minHourWidth: CGFloat = 1.5
         static let showHourMarkers: Bool = false // Toggle for showing hour markers vs numbers

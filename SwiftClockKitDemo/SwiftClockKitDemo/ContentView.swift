@@ -54,8 +54,8 @@ struct ContentView: View {
         }
         .padding()
         .onAppear(perform: updateCodeSnippet)
-        .onChange(of: currentAppearance) { _ in updateCodeSnippet() }
-        .onChange(of: useCustomDate) { _ in updateCodeSnippet() }
+        .onChange(of: currentAppearance) { updateCodeSnippet() }
+        .onChange(of: useCustomDate) { updateCodeSnippet() }
         .onChange(of: selectedDate) { _ in if useCustomDate { updateCodeSnippet() } } // Update snippet if custom date changes
     }
 
