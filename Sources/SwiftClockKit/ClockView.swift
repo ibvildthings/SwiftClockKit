@@ -55,8 +55,8 @@ public struct ClockView: View {
                 userSchemePreference: configuredAppearance,
                 systemAppearance: systemAppearance
             )
-        case .digital:
-            DigitalClockFaceView(
+        case .vone:
+            VoneClockFaceView(
                 time: time,
                 radius: radius,
                 userSchemePreference: configuredAppearance,

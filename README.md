@@ -91,7 +91,7 @@ ClockView() // Defaults to .braun style, .system appearance, with reflections
 
 
 ### Light & Dark Mode Examples
-![Default Clock Example](./Screenshots/braun-dark.gif)
+![Braun Clock with dark mode](./Screenshots/braun-dark.gif)
 
 Explicitly set the appearance for your clock:
 
@@ -155,6 +155,10 @@ ClockView(
 Currently available styles:
 
 * `.braun` – Clean, elegant design inspired by classic Braun aesthetic
+
+![Vone Clock Example](./Screenshots/vone-dark.png)
+
+* `.vone` – Modern, minimalist design by vone
 
 *More styles coming in future updates!*
 

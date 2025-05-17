@@ -4,8 +4,8 @@ struct VoneMinuteHand: View {
     @Environment(\.clockRadius) private var radius: CGFloat
     let theme: VoneClockTheme
     
-    private var outerWidth: CGFloat { radius * VoneThemeLayoutConstants.MinuteHand.outerWidthRatio }
-    private var visibleLength: CGFloat { radius * VoneThemeLayoutConstants.MinuteHand.outerHeightRatio } // Length from hub edge to tip
+    private var outerWidth: CGFloat { radius * VoneThemeLayoutConstants.MinuteHand.widthRatio }
+    private var visibleLength: CGFloat { radius * VoneThemeLayoutConstants.MinuteHand.heightRatio } // Length from hub edge to tip
     private var hubRadius: CGFloat { radius * (VoneThemeLayoutConstants.CenterHub.diameterRatio / 2) }
 
     // Total length of the capsule loop to draw (pivot to tip)

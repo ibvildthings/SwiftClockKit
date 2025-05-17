@@ -18,7 +18,7 @@ public extension EnvironmentValues {
 }
 
 public struct ClockStyleKey: EnvironmentKey {
-    public static let defaultValue: ClockStyle = .digital
+    public static let defaultValue: ClockStyle = .braun
 }
 
 public struct ClockRadiusKey: EnvironmentKey {
