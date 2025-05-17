@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct DigitalClockFaceView: View {
+struct VoneClockFaceView: View {
     let time: Date
     let radius: CGFloat
     let userSchemePreference: AppearanceScheme
