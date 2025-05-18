@@ -55,8 +55,7 @@ struct VoneClockFaceView: View {
                 .handShadow(radius: shadowRadius, distance: shadowDistance, angle: shadowAngle, color: theme.shadow)
 
             // 5. Center Piece Hub (should be on top of hand bases)
-            Circle()
-                .fill(theme.centerHub)
+            VoneCenterDot(theme: theme)
                 .frame(width: centerHubDiameter, height: centerHubDiameter)
         }
         .clipShape(Circle())

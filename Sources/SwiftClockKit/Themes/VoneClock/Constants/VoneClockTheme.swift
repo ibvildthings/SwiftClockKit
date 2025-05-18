@@ -23,6 +23,8 @@ struct VoneClockTheme {
     private static let nightHourHandLightColor = Color(red: 1.0, green: 0.68, blue: 0.30) // Slightly lighter
     private static let nightHourHandDarkColor = Color(red: 0.90, green: 0.48, blue: 0.10) // Slightly darker
     private static let nightMinuteHandColor = Color(red: 0.45, green: 0.45, blue: 0.45) // Slightly lighter Gray for minute hand frame
+    private static let nightCenterHubLightColor = Color(red: 0.55, green: 0.55, blue: 0.55)
+    private static let nightCenterHubDarkColor = Color(red: 0.35, green: 0.35, blue: 0.35)
     private static let nightBrandTextColor = Color(red: 0.45, green: 0.45, blue: 0.45) // Light gray for "vone." text
     private static let nightShadow = Color.black.opacity(0.5)
     
@@ -33,7 +35,10 @@ struct VoneClockTheme {
     private static let dayHourHandColor = Color(red: 253/255.0, green: 156/255.0, blue: 44/255.0) // Base
     private static let dayHourHandLightColor = Color(red: 1.0, green: 170/255.0, blue: 70/255.0)   // Slightly lighter
     private static let dayHourHandDarkColor  = Color(red: 230/255.0, green: 130/255.0, blue: 20/255.0) // Slightly darker
-    private static let dayMinuteHandColor = Color(red: 145/255.0, green: 145/255.0, blue: 143/255.0)
+    // Day Mode Minute Hand – Polished Gray Gradient
+    private static let dayMinuteHandColor = Color(red: 145/255.0, green: 145/255.0, blue: 143/255.0) // Base
+    private static let dayCenterHubLightColor = Color(red: 160/255.0, green: 160/255.0, blue: 158/255.0) // Slightly lighter
+    private static let dayCenterHubDarkColor = Color(red: 125/255.0, green: 125/255.0, blue: 123/255.0)  // Slightly darker
     private static let dayBrandTextColor = Color(white: 0.65)
     private static let dayShadow = Color.black.opacity(0.3)
     
@@ -49,6 +54,9 @@ struct VoneClockTheme {
     var hourHandDark: Color { effectiveColorScheme == .dark ? Self.nightHourHandDarkColor : Self.dayHourHandDarkColor }
 
     var minuteHand: Color { effectiveColorScheme == .dark ? Self.nightMinuteHandColor : Self.dayMinuteHandColor }
+    
+    var centerHubLight: Color { effectiveColorScheme == .dark ? Self.nightCenterHubLightColor : Self.dayCenterHubLightColor }
+    var centerHubDark: Color { effectiveColorScheme == .dark ? Self.nightCenterHubDarkColor : Self.dayCenterHubDarkColor }
     var centerHub: Color { effectiveColorScheme == .dark ? Self.nightMinuteHandColor : Self.dayMinuteHandColor }
 
     var brandText: Color { effectiveColorScheme == .dark ? Self.nightBrandTextColor : Self.dayBrandTextColor }
