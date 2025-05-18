@@ -8,7 +8,7 @@ public struct ClockView: View {
     private let configuredAppearance: AppearanceScheme
 
     @State private var internalLiveTime: Date
-    private let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    private let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
 
     public init(
         style: ClockStyle = .braun,
@@ -41,7 +41,7 @@ public struct ClockView: View {
         }
         .aspectRatio(1, contentMode: .fit)
         .onReceive(timer) { _ in
-            internalLiveTime = internalLiveTime.addingTimeInterval(0.1)
+            internalLiveTime = internalLiveTime.addingTimeInterval(0.3)
         }
         .onChange(of: dateBinding?.wrappedValue) { oldBoundValue, newBoundValue in
             guard let newDateFromExternalSource = newBoundValue else { return }
