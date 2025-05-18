@@ -12,11 +12,11 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 20) {
             Text("Swift Clock Kit")
-                .font(.title3)
-                .padding(.top)
+                .font(.largeTitle)
+                .fontWeight(.semibold)
 
             ClockView(
-                style: selectedClockStyle, // Use the state variable here
+                style: selectedClockStyle,
                 date: useCustomDate ? $selectedDate : nil,
                 appearance: currentAppearance
             )
