@@ -7,7 +7,14 @@ public struct ClockView: View {
     private let dateBinding: Binding<Date>?
     private let configuredAppearance: AppearanceScheme
 
-    @State private var internalLiveTime: Date
+    // 'dateDelta' stores the time offset from the current system time.
+    @State private var dateDelta: TimeInterval = 0.0
+
+    // 'currentTimeToDisplay' is the actual Date object rendered by the clock face.
+    // It's calculated as: current system time + dateDelta.
+    @State private var currentTimeToDisplay: Date = Date()
+
+    // Timer to refresh the clock face for live ticking.
     private let timer = Timer.publish(every: 0.3, on: .main, in: .common).autoconnect()
 
     public init(
@@ -18,12 +25,6 @@ public struct ClockView: View {
         self.configuredStyle = style
         self.dateBinding = date
         self.configuredAppearance = appearance
-
-        if let initialDateFromBinding = date?.wrappedValue {
-            _internalLiveTime = State(initialValue: initialDateFromBinding)
-        } else {
-            _internalLiveTime = State(initialValue: Date())
-        }
     }
 
     public var body: some View {
@@ -31,7 +32,7 @@ public struct ClockView: View {
             let diameter = min(proxy.size.width, proxy.size.height)
             let radius = diameter / 2
 
-            makeSelectedClockFace(time: internalLiveTime, radius: radius)
+            makeSelectedClockFace(time: currentTimeToDisplay, radius: radius)
                 .frame(width: diameter, height: diameter)
                 .position(x: proxy.frame(in: .local).midX, y: proxy.frame(in: .local).midY)
                 .drawingGroup()
@@ -40,15 +41,32 @@ public struct ClockView: View {
                 .environment(\.clockRadius, radius)
         }
         .aspectRatio(1, contentMode: .fit)
-        .onReceive(timer) { _ in
-            internalLiveTime = internalLiveTime.addingTimeInterval(0.3)
+        .onAppear {
+            // Initialize dateDelta based on any initial binding.
+            updateDateDelta(from: dateBinding?.wrappedValue)
+            // Set the initial display time.
+            currentTimeToDisplay = Date().addingTimeInterval(dateDelta)
         }
-        .onChange(of: dateBinding?.wrappedValue) { oldBoundValue, newBoundValue in
-            guard let newDateFromExternalSource = newBoundValue else { return }
+        .onReceive(timer) { _ in
+            // Continuously update the display time based on the current system time and the stored delta.
+            currentTimeToDisplay = Date().addingTimeInterval(dateDelta)
+        }
+        .onChange(of: dateBinding?.wrappedValue) { _, newValue in
+            // When the external binding changes, recalculate the delta.
+            updateDateDelta(from: newValue)
+            // Immediately reflect this change in the displayed time; the timer will continue from this new offset.
+            currentTimeToDisplay = Date().addingTimeInterval(dateDelta)
+        }
+    }
 
-            if abs(newDateFromExternalSource.timeIntervalSinceReferenceDate - internalLiveTime.timeIntervalSinceReferenceDate) > 0.001 {
-                internalLiveTime = newDateFromExternalSource
-            }
+    /// Calculates and updates `dateDelta` based on the provided bound date.
+    private func updateDateDelta(from boundDate: Date?) {
+        if let newDateFromExternalSource = boundDate {
+            // If a date is bound, the delta is its difference from the current system time.
+            self.dateDelta = newDateFromExternalSource.timeIntervalSince(Date())
+        } else {
+            // If no date is bound, there's no offset from the current system time.
+            self.dateDelta = 0.0
         }
     }
 
