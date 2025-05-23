@@ -79,7 +79,8 @@ public enum ClockAngles {
         let nanosecond = Double(calendar.component(.nanosecond, from: date)) // 0-999,999,990 (usually in increments of system clock)
         
         // Total seconds including fractional nanoseconds
-        let totalSeconds = second + nanosecond / 1_000_000_000.0
+        // let totalSeconds = second + nanosecond / 1_000_000_000.0
+        let totalSeconds = second
         
         // Each second corresponds to 6 degrees (360 / 60 = 6)
         let angleInDegrees = totalSeconds * 6.0
