@@ -48,6 +48,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		7B39F1E42EC25212001C21E8 /* ClockWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ClockWidget;
+			sourceTree = "<group>";
+		};
 		7B56BD412DD6115800E4FDAE /* SwiftClockKitDemo */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SwiftClockKitDemo;
@@ -87,13 +92,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7B39F1E42EC25212001C21E8 /* ClockWidget */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ClockWidget;
-			sourceTree = "<group>";
-		};
 		7B56BD362DD6115800E4FDAE = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +126,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7B39F1E42EC25212001C21E8 /* ClockWidget */,
 			);
 			name = ClockWidgetExtension;
 			packageProductDependencies = (
@@ -258,7 +259,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4899W2A5G3;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ClockWidget/Info.plist;
+				INFOPLIST_FILE = ClockWidgetInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -286,7 +287,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4899W2A5G3;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = ClockWidget/Info.plist;
+				INFOPLIST_FILE = ClockWidgetInfo.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
