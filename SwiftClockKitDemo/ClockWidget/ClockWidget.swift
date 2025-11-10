@@ -40,9 +40,15 @@ struct ClockWidgetProvider: TimelineProvider {
 struct ClockWidgetEntryView: View {
     var entry: ClockWidgetProvider.Entry
     @Environment(\.widgetFamily) var widgetFamily
+    @State private var displayDate: Date
+
+    init(entry: ClockWidgetProvider.Entry) {
+        self.entry = entry
+        self._displayDate = State(initialValue: entry.date)
+    }
 
     var body: some View {
-        ClockView(style: entry.clockStyle, time: entry.date)
+        ClockView(style: entry.clockStyle, date: $displayDate)
             .containerBackground(for: .widget) {
                 Color.black
             }
