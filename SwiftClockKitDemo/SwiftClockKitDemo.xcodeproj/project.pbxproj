@@ -257,7 +257,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4899W2A5G3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ClockWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClockWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
@@ -286,7 +285,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4899W2A5G3;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ClockWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ClockWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
