@@ -1,29 +1,26 @@
 import WidgetKit
 import SwiftUI
 import SwiftClockKit
+import AppIntents
 
 struct ClockWidgetEntry: TimelineEntry {
     let date: Date
     let clockStyle: ClockStyle
 }
 
-struct ClockWidgetProvider: TimelineProvider {
+struct ClockWidgetProvider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> ClockWidgetEntry {
         ClockWidgetEntry(date: Date(), clockStyle: .braun)
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (ClockWidgetEntry) -> Void) {
-        let entry = ClockWidgetEntry(date: Date(), clockStyle: .braun)
-        completion(entry)
+    func snapshot(for configuration: ClockStyleConfigurationIntent, in context: Context) async -> ClockWidgetEntry {
+        ClockWidgetEntry(date: Date(), clockStyle: configuration.style.clockStyle)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<ClockWidgetEntry>) -> Void) {
+    func timeline(for configuration: ClockStyleConfigurationIntent, in context: Context) async -> Timeline<ClockWidgetEntry> {
         var entries: [ClockWidgetEntry] = []
         let currentDate = Date()
-
-        // Get the clock style from user defaults, defaulting to braun
-        let styleName = UserDefaults(suiteName: "group.com.SwiftClockKit.widget")?.string(forKey: "clockStyle") ?? "braun"
-        let clockStyle: ClockStyle = styleName == "vone" ? .vone : .braun
+        let clockStyle = configuration.style.clockStyle
 
         // Create entries for the next hour, updating every minute
         for minuteOffset in 0..<60 {
@@ -32,8 +29,7 @@ struct ClockWidgetProvider: TimelineProvider {
             entries.append(entry)
         }
 
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
+        return Timeline(entries: entries, policy: .atEnd)
     }
 }
 
@@ -44,7 +40,7 @@ struct ClockWidgetEntryView: View {
     var body: some View {
         ClockView(style: entry.clockStyle, date: .constant(entry.date))
             .containerBackground(for: .widget) {
-                Color.black
+                Color.clear
             }
     }
 }
@@ -53,7 +49,7 @@ struct ClockWidget: Widget {
     let kind: String = "ClockWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: ClockWidgetProvider()) { entry in
+        AppIntentConfiguration(kind: kind, intent: ClockStyleConfigurationIntent.self, provider: ClockWidgetProvider()) { entry in
             ClockWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Clock")
