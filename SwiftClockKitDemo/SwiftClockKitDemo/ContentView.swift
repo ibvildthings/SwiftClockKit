@@ -5,7 +5,7 @@ struct ContentView: View {
     @State private var currentAppearance: AppearanceScheme = .system
     @State private var useCustomDate: Bool = false
     @State private var selectedDate: Date = Date()
-    @State private var selectedClockStyle: ClockStyle = .braun // Default to Braun
+    @State private var selectedClockStyle: ClockStyle = .bankers // Default to Braun
 
     @State private var codeSnippet: String = ""
 

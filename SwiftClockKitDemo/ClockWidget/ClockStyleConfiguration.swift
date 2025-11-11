@@ -4,6 +4,7 @@ import SwiftClockKit
 enum ClockStyleOption: String, AppEnum {
     case braun
     case vone
+    case bankers
 
     static var typeDisplayRepresentation: TypeDisplayRepresentation {
         "Clock Style"
@@ -12,7 +13,8 @@ enum ClockStyleOption: String, AppEnum {
     static var caseDisplayRepresentations: [ClockStyleOption: DisplayRepresentation] {
         [
             .braun: "Braun",
-            .vone: "Vone"
+            .vone: "Vone",
+            .bankers: "Bankers"
         ]
     }
 
@@ -22,6 +24,8 @@ enum ClockStyleOption: String, AppEnum {
             return .braun
         case .vone:
             return .vone
+        case .bankers:
+            return .bankers
         }
     }
 }
