@@ -5,16 +5,6 @@ struct VoneFace: View {
     
     var body: some View {
         Circle()
-            .fill(
-                LinearGradient(
-                    gradient: Gradient(colors: [
-                        theme.faceLight,
-                        theme.face,
-                        theme.faceDark
-                    ]),
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
+            .fill(Color.clear)
     }
 }

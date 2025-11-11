@@ -42,11 +42,13 @@ struct ClockWidgetProvider: AppIntentTimelineProvider {
 struct ClockWidgetEntryView: View {
     var entry: ClockWidgetProvider.Entry
     @Environment(\.widgetFamily) var widgetFamily
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ClockView(style: entry.clockStyle, date: .constant(entry.date), appearance: entry.appearance)
             .containerBackground(for: .widget) {
-                Color.clear
+                // Solid background that adapts to light/dark mode
+                colorScheme == .dark ? Color.black : Color.white
             }
     }
 }
