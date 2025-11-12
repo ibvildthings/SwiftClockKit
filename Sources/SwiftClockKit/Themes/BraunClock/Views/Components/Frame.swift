@@ -9,9 +9,9 @@ struct Frame: View {
     
     var body: some View {
         ZStack {
-            // Clock Face Background (Transparent for widgets)
+            // Clock Face Background
             Circle()
-                .fill(Color.clear)
+                .fill(theme.face)
 
             // Clock Border
             Circle()
