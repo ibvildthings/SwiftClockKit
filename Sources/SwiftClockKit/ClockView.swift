@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 public struct ClockView: View {
     @Environment(\.colorScheme) private var systemAppearance: SwiftUI.ColorScheme
@@ -6,6 +7,7 @@ public struct ClockView: View {
     private let configuredStyle: ClockStyle
     private let dateBinding: Binding<Date>?
     private let configuredAppearance: AppearanceScheme
+    private let isLive: Bool
 
     @State private var currentTimeToDisplay: Date = Date()
     @State private var dateDelta: TimeInterval = 0.0
@@ -15,11 +17,13 @@ public struct ClockView: View {
     public init(
         style: ClockStyle = .braun,
         date: Binding<Date>? = nil,
-        appearance: AppearanceScheme = .system
+        appearance: AppearanceScheme = .system,
+        isLive: Bool = true
     ) {
         self.configuredStyle = style
         self.dateBinding = date
         self.configuredAppearance = appearance
+        self.isLive = isLive
     }
 
     public var body: some View {
@@ -40,9 +44,9 @@ public struct ClockView: View {
             updateDateDelta(from: dateBinding?.wrappedValue)
             currentTimeToDisplay = Date().addingTimeInterval(dateDelta)
         }
-        .onReceive(timer) { date in
+        .modifier(ConditionalTimerModifier(isLive: isLive, timer: timer) {
             currentTimeToDisplay = Date().addingTimeInterval(dateDelta)
-        }
+        })
         .onChange(of: dateBinding?.wrappedValue) { _, newValue in
             updateDateDelta(from: newValue)
             currentTimeToDisplay = Date().addingTimeInterval(dateDelta)
@@ -74,6 +78,23 @@ public struct ClockView: View {
                 userSchemePreference: configuredAppearance,
                 systemAppearance: systemAppearance
             )
+        }
+    }
+}
+
+// Helper modifier to conditionally apply timer
+private struct ConditionalTimerModifier: ViewModifier {
+    let isLive: Bool
+    let timer: Publishers.Autoconnect<Timer.TimerPublisher>
+    let onReceive: () -> Void
+
+    func body(content: Content) -> some View {
+        if isLive {
+            content.onReceive(timer) { _ in
+                onReceive()
+            }
+        } else {
+            content
         }
     }
 }
