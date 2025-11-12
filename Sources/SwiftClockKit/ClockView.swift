@@ -78,6 +78,13 @@ public struct ClockView: View {
                 userSchemePreference: configuredAppearance,
                 systemAppearance: systemAppearance
             )
+        case .bankers:
+            BankersClockFaceView(
+                time: time,
+                radius: radius,
+                userSchemePreference: configuredAppearance,
+                systemAppearance: systemAppearance
+            )
         }
     }
 }
